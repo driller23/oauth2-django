@@ -1,3 +1,5 @@
+# oauth2-server/Dockerfile
+
 FROM python:3.11-alpine
 
 WORKDIR /app
@@ -9,7 +11,7 @@ RUN pip install -r requirements.txt
 
 COPY src .
 
-# Add this line to print out available commands
-RUN python manage.py help
+# Ensure the template directory exists
+RUN mkdir -p oauth_server/templates
 
 CMD ["sh", "-c", "python manage.py migrate && python manage.py setup_oauth2 && python manage.py runserver 0.0.0.0:8000"]
