@@ -66,14 +66,3 @@ OAUTH2_PROVIDER = {
     'ACCESS_TOKEN_EXPIRE_SECONDS': 3600,  # 1 hour
     'REFRESH_TOKEN_EXPIRE_SECONDS': 86400,  # 1 day
 }
-
-# oauth2-server/src/oauth_server/urls.py
-from django.contrib import admin
-from django.urls import path, include
-from . import views
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
-    path('api/hello/', views.api_hello, name='api_hello'),
-]
