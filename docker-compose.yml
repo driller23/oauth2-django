@@ -3,7 +3,7 @@ version: '3.8'
 
 services:
   oauth2-server:
-    build: ./oauth2-server
+    image: oauth2-server
     ports:
       - "8000:8000"
     environment:
@@ -14,7 +14,7 @@ services:
       - ./oauth2-server/src:/app
 
   oauth2-client:
-    build: ./oauth2-client
+    image: oauth2-client
     ports:
       - "8001:8000"
     environment:
