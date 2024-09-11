@@ -1,3 +1,5 @@
+# oauth2-client/src/oauth_client/settings.py
+
 import os
 from django.core.management.utils import get_random_secret_key
 
@@ -7,9 +9,6 @@ SECRET_KEY = os.environ.get('SECRET_KEY') or get_random_secret_key()
 
 DEBUG = os.environ.get('DEBUG', '0') == '1'
 
-# Add this to the existing settings.py file
-STATIC_URL = '/static/'
-
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
 
 INSTALLED_APPS = [
@@ -17,7 +16,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles',  # Make sure this line is present
     'oauth_client',
 ]
 
@@ -55,6 +54,9 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 OAUTH2_PROVIDER = {
     'CLIENT_ID': os.environ.get('OAUTH2_PROVIDER_CLIENT_ID'),
