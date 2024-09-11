@@ -1,0 +1,32 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  oauth2-server:
+    build: ./oauth2-server
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=1
+      - SECRET_KEY=your-secret-key
+      - ALLOWED_HOSTS=localhost,127.0.0.1,oauth2-server
+    volumes:
+      - ./oauth2-server/src:/app
+
+  oauth2-client:
+    build: ./oauth2-server
+    ports:
+      - "8001:8000"
+    environment:
+      - DEBUG=1
+      - SECRET_KEY=your-secret-key
+      - ALLOWED_HOSTS=localhost,127.0.0.1,oauth2-client
+      - OAUTH2_PROVIDER_AUTHORIZATION_URL=http://oauth2-server:8000/o/authorize/
+      - OAUTH2_PROVIDER_TOKEN_URL=http://oauth2-server:8000/o/token/
+      - OAUTH2_PROVIDER_REDIRECT_URL=http://localhost:8001/oauth/callback/
+      - OAUTH2_PROVIDER_CLIENT_ID=your-client-id
+      - OAUTH2_PROVIDER_CLIENT_SECRET=your-client-secret
+    volumes:
+      - ./oauth2-client/src:/app
+    depends_on:
+      - oauth2-server
