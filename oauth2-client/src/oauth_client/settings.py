@@ -58,6 +58,8 @@ DATABASES = {
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+SERVER_EXTERNAL_URL = os.environ.get('SERVER_EXTERNAL_URL', 'http://localhost:8000')
+
 OAUTH2_PROVIDER = {
     'CLIENT_ID': os.environ.get('OAUTH2_PROVIDER_CLIENT_ID'),
     'CLIENT_SECRET': os.environ.get('OAUTH2_PROVIDER_CLIENT_SECRET'),
@@ -66,3 +68,4 @@ OAUTH2_PROVIDER = {
     'REDIRECT_URL': os.environ.get('OAUTH2_PROVIDER_REDIRECT_URL'),
     'SCOPE': 'read write',
 }
+
