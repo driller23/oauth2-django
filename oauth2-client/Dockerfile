@@ -9,4 +9,7 @@ RUN pip install -r requirements.txt
 
 COPY src .
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Create necessary directories
+RUN mkdir -p staticfiles
+
+CMD ["sh", "-c", "python manage.py collectstatic --noinput && python manage.py runserver 0.0.0.0:8000"]
