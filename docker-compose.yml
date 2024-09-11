@@ -1,3 +1,4 @@
+# docker-compose.yml
 version: '3.8'
 
 services:
@@ -20,16 +21,13 @@ services:
       - DEBUG=1
       - SECRET_KEY=your-secret-key
       - ALLOWED_HOSTS=localhost,127.0.0.1,oauth2-client
-      - OAUTH2_PROVIDER_AUTHORIZATION_URL=http://oauth2-server:8000/o/authorize/
+      - OAUTH2_PROVIDER_AUTHORIZATION_URL=http://localhost:8000/o/authorize/
       - OAUTH2_PROVIDER_TOKEN_URL=http://oauth2-server:8000/o/token/
       - OAUTH2_PROVIDER_REDIRECT_URL=http://localhost:8001/oauth/callback/
       - OAUTH2_PROVIDER_CLIENT_ID=your-client-id
       - OAUTH2_PROVIDER_CLIENT_SECRET=your-client-secret
+      - SERVER_EXTERNAL_URL=http://localhost:8000
     volumes:
       - ./oauth2-client/src:/app
-      - static_volume:/app/staticfiles
     depends_on:
       - oauth2-server
-
-volumes:
-  static_volume:
