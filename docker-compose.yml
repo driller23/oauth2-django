@@ -27,5 +27,9 @@ services:
       - OAUTH2_PROVIDER_CLIENT_SECRET=your-client-secret
     volumes:
       - ./oauth2-client/src:/app
+      - static_volume:/app/staticfiles
     depends_on:
       - oauth2-server
+
+volumes:
+  static_volume:
