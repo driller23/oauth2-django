@@ -1,5 +1,5 @@
 # oauth2-client/Dockerfile
-FROM python:3.9
+FROM python:3.11
 
 WORKDIR /app
 
@@ -11,11 +11,11 @@ COPY src .
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
 # oauth2-client/requirements.txt
-Django==3.2.10
-requests==2.26.0
+Django==4.2.3
+requests==2.31.0
 
 # oauth2-server/Dockerfile
-FROM python:3.9
+FROM python:3.11
 
 WORKDIR /app
 
