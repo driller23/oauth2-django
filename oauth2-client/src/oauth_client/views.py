@@ -35,7 +35,7 @@ def protected_resource(request):
         return redirect('oauth_login')
     
     headers = {'Authorization': f'Bearer {token}'}
-    response = requests.get('http://oauth2-server:8000/api/hello/', headers=headers)
+    response = requests.get(f"{settings.SERVER_EXTERNAL_URL}/api/hello/", headers=headers)
     
     if response.status_code == 200:
         return HttpResponse(f"Protected Resource: {response.json()['message']}")
