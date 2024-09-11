@@ -9,4 +9,7 @@ RUN pip install -r requirements.txt
 
 COPY src .
 
+# Add this line to print out available commands
+RUN python manage.py help
+
 CMD ["sh", "-c", "python manage.py migrate && python manage.py setup_oauth2 && python manage.py runserver 0.0.0.0:8000"]
