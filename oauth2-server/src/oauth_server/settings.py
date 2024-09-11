@@ -20,7 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'oauth2_provider',
-    'oauth_server',
+    'oauth_server.apps.OAuth2ServerConfig',  # Update this line
 ]
 
 MIDDLEWARE = [
